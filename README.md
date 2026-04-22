@@ -29,10 +29,6 @@ This improves data retrieval and supports richer UI components.
 
 ---
 
-## 🔗 Blockchain Interaction Improvements
-
-A reusable Web3 contract loader was added in:
-
 
 
 ## Getting Started
