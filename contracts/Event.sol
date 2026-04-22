@@ -113,6 +113,33 @@ contract Event is Ownable {
         
         return ticketId;
     }
+    // Added by Alvin: Returns full event details for front-end display
+    function getEventDetails(uint _eventId)
+        public
+        view
+        returns (
+            string name,
+            uint price,
+            uint totalTickets,
+            uint remainingTickets,
+            address owner
+        )
+    {
+        require(_eventId < events.length, "Event does not exist");
+        EventData memory e = events[_eventId];
+        return (
+            e.name,
+            e.price,
+            e.totalTickets,
+            e.remainingTickets,
+            e.owner
+        );
+    }
+
+    /**
+    * @dev Redeems the ticket with given id. This would be called after the
+    * event organizer has checked isRedeemable() on the ticket.
+    */
 
     /**
     * @dev Redeems the ticket with given id. This would be called after the
