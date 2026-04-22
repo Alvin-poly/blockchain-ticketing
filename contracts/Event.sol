@@ -113,6 +113,11 @@ contract Event is Ownable {
         
         return ticketId;
     }
+    
+    /**
+    * @dev Redeems the ticket with given id. This would be called after the
+    * event organizer has checked isRedeemable() on the ticket.
+    */
     // Added by Alvin: Returns full event details for front-end display
     function getEventDetails(uint _eventId)
         public
@@ -135,11 +140,6 @@ contract Event is Ownable {
             e.owner
         );
     }
-
-    /**
-    * @dev Redeems the ticket with given id. This would be called after the
-    * event organizer has checked isRedeemable() on the ticket.
-    */
 
     /**
     * @dev Redeems the ticket with given id. This would be called after the
