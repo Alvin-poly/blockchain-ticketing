@@ -7,8 +7,16 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const path = require('path');
 
-
+module.exports = {
+  target: 'node', // 👈 tells Webpack to use Node's fs
+  resolve: {
+    fallback: {
+      fs: false // 👈 disables browser polyfill
+    }
+  },
+};
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -125,7 +133,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: [ paths.appSrc, paths.drizzleReact ],
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
 
           // This is a feature of `babel-loader` for webpack (not Babel itself).
