@@ -6,6 +6,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 
 
@@ -83,13 +84,12 @@ module.exports = {
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: paths.appSrc,
-      }
-    ],
+   plugins: [new ESLintPlugin({
+  extensions: ['js', 'jsx'],
+  emitWarning: true
+  })
+  ],
+
     loaders: [
       // Default loader: load all assets that are not handled
       // by other loaders with the url loader.
